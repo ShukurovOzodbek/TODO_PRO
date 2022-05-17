@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TODO</h1>
+
+    <div class="head">
+        <div class="left">
+            <div class="input">
+                <input type="text" id="search" placeholder="Поиск задачи">
+            </div>
+            <select id="">
+                <option>All todo</option>
+                <option>Done</option>
+                <option>NotDone</option>
+            </select>
+            <form action="" name="todo">
+                <input type="text" class="create" name="task" placeholder="Названия Задачи">
+                <button class="create_task">Создать Задачу</button>
+            </form>
+            <button class="create_inp">Создать Задачу</button>
+        </div>
+    </div>
+    <div class="cont">
+        <span class="span_not">Is not Done! - 0 </span>
+        <div id="notdone" class="notdone">
+
+        </div>
+        <div class="line"></div>
+        <span class="span">Is Done! - 0 </span>
+        <div id="done" class="done">
+
+        </div>  
+        
+    </div>
+    <!-- <div class="cont_found">
+        <span>Finded</span>
+        <div class="found">
+
+        </div>
+    </div> -->
+    <script src="./index.js"></script>
+</body>
+</html>
