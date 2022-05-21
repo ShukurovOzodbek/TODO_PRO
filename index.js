@@ -21,7 +21,7 @@ form.onsubmit = (e) => {
         color: 'red',
         isDoned: 'Not Done!',
         box_name: 'box_notdone',
-        dir: document.querySelector('.notdone'),
+        dir: 'notdone',
         time: `${new Date().getHours()}:${new Date().getMinutes()}`
     }
 
@@ -33,6 +33,7 @@ form.onsubmit = (e) => {
     if(input.value === '') {
     }else{
         arr.push(todo)
+        localStorage.arr = JSON.stringify(arr)
         a = arr.length
         reload(arr)
     }
@@ -42,12 +43,7 @@ form.onsubmit = (e) => {
 let select = document.querySelector('select');
 
 function reload(array) {
-    try{
-        document.querySelector('.notdone').innerHTML = ''
-    }
-    catch(err){
-        document.querySelector('.cont').innerHTML = ''
-    }
+    document.querySelector('.notdone').innerHTML = ''
 
     for (const item of array) {
         let box = document.createElement('div')
@@ -67,7 +63,7 @@ function reload(array) {
         span.innerHTML = item.isDoned
         span.style.color = `${item.color}`
         
-        item.dir.append(box)
+        document.querySelector('.' + item.dir).append(box)
 
         box.append(h3, time, check)
         check.append(inp, span)
@@ -76,7 +72,7 @@ function reload(array) {
         inp.onclick = () => {
             if(inp.parentNode.parentNode.parentNode.classList == 'notdone') {
                 let idx = arr.findIndex(elem => elem.id == item.id)
-    
+                
                 let a = arr.splice(idx, 1)
                 
                 ///
@@ -88,7 +84,8 @@ function reload(array) {
                     item3.isDoned = 'Done!'
                     item3.color = 'green'
                     item3.box_name = 'box_done'
-                    item3.dir = document.querySelector('.done')
+                    item3.dir = 'done'
+                    localStorage.arr2 = JSON.stringify(arr2)
                 }
             }else if(inp.parentNode.parentNode.parentNode.classList == 'done'){
                 let idx2 = arr2.findIndex(elem => elem.id == item.id)
@@ -106,7 +103,7 @@ function reload(array) {
                     item3.isDoned = 'Not Done!'
                     item3.color = 'red'
                     item3.box_name = 'box_notdone'
-                    item3.dir = document.querySelector('.notdone')
+                    item3.dir = 'notdone'
                     reload(arr) 
                     reload(arr2)
                 }
@@ -120,11 +117,8 @@ function reload(array) {
         }
         search()
         let span_not = document.querySelector('.span_not')
-        try {
-            span_not.innerHTML = `Is not Done! - ${arr.length}`
-        } catch (error) {   
-            
-        }
+        span_not.innerHTML = `Is not Done! - ${arr.length}`
+
     }
 }
 option()
@@ -206,4 +200,22 @@ create_inp.onclick = () => {
         form.style.width = '0px'
         create_inp.hidden = false
     }, 10000);
+}
+
+
+let tamp = JSON.parse(localStorage.getItem('arr'))
+arr = tamp
+let tamp2 = JSON.parse(localStorage.getItem('arr2'))
+arr2 = tamp2
+
+tamparete()
+
+if(tamp.length > 0) {
+    reload(tamp)
+}
+function tamparete() {
+    if(tamp2.length > 0) {
+        reload(tamp2)
+    }
+    
 }
