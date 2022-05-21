@@ -105,7 +105,7 @@ select{
     background-color: white;
     min-height: 400px;
     /* transition: 2s ease; */
-    overflow: hidden;
+    overflow: visible;
     padding-top: 24px;
     gap: 20px;
     display: flex !important;
@@ -144,6 +144,7 @@ h1{
     font-weight: 300;
     font-size: 54px;
     margin: 0 auto;
+    margin-top: 100px;
 }
 .check{
     margin-top: 20px;
